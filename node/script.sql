@@ -1,6 +1,7 @@
 CREATE TABLE User(
     email TEXT PRIMARY KEY,
     name TEXT NOT NULL,
+    password TEXT NOT NULL,
     address TEXT NOT NULL
 );
 

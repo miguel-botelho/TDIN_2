@@ -10,6 +10,9 @@ const hbs = require('hbs');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('database/database.db');
+const user = require('./database/user.js');
+const book = require('./database/book.js');
+const order = require('./database/order.js');
 
 const app = express();
 
@@ -70,13 +73,5 @@ app.use((err, req, res) => {
         title: 'JRCM: 404',
     });
 });
-
-db.serialize(() => {
-    db.run("CREATE TABLE User( email TEXT PRIMARY KEY, name TEXT NOT NULL, address TEXT NOT NULL);");
-    db.run("CREATE TABLE Book( title TEXT PRIMARY KEY, stock INTEGER, price INTEGER NOT NULL);");
-    db.run("CREATE TABLE Encomenda( uuid TEXT PRIMARY KEY, quantity INTEGER NOT NULL, state TEXT NOT NULL, email TEXT REFERENCES User(email), title TEXT REFERENCES Book(title));");
-});
-
-db.close();
 
 module.exports = app;
