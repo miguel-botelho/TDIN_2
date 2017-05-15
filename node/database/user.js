@@ -9,6 +9,15 @@ function createUser(name, password, address, email, callback) {
     });
 }
 
+function compareCredentials(email, password, callback) {
+    const stmt = db.prepare('SELECT * FROM User WHERE email = ? AND password = ?');
+    stmt.get([email, password], (err, row) => {
+        if (row.email === email) callback(true);
+        else callback(false);
+    });
+}
+
 module.exports = {
     createUser,
+    compareCredentials,
 };

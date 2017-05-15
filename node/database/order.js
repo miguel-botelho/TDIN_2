@@ -19,7 +19,7 @@ function placeOrder(email, quantity, title, callback) {
                         });
                 });
             });
-        } else { // place the order, send an e-mail and connect to the warehouse server
+        } else { // place the order, send an e-mail and connect to the warehouse server (ask for the quantity + 10)
             createOrder(email, title, quantity, 'Waiting Expedition', (uuid) => {
                 sendEmail(email, 'Waiting Expedition of order number: ' + uuid + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity
                     + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * quantity), (response) => {
@@ -27,6 +27,43 @@ function placeOrder(email, quantity, title, callback) {
                     });
             });
         }
+    });
+}
+
+// to be called when the gui client is called in the warehouse
+function updateOrderByWarehouse(uuid, callback) {
+    const date = new Date();
+    date.setDate(date.getDate() + 2);
+    const temp = 'Dispatch Will Ocurr At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+    const stmt = db.prepare('UPDATE Order SET state = ? WHERE uuid = ?');
+    stmt.get([temp, uuid], (err, row) => {
+        callback(row);
+    });
+}
+
+// to be called when the gui client is called in the store
+function updateOrderByWarehouse(uuid, callback) {
+    const date = new Date();
+    const temp = 'Dispatched At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+    // get title of book
+    const stmt = db.prepare('SELECT * FROM Order WHERE uuid = ?');
+    stmt.get(uuid, (err, order) => {
+        // get stock of book
+        stmt = db.prepare('SELECT * FROM Book WHERE title = ?');
+        stmt.get(order.title, (err, book) => {
+            // update stock of book
+            stmt = db.prepare('UPDATE Book SET stock = ? WHERE title = ?');
+            stmt.get([book.stock + order.quantity, order.title], (err, row) => {
+                // update the order's state
+                stmt = db.prepare('UPDATE Order SET state = ? WHERE uuid = ?');
+                stmt.get([temp, uuid], (err, row) => {
+                    sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
+                        + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
+                            callback(response);
+                        });
+                });
+            });
+        });
     });
 }
 
