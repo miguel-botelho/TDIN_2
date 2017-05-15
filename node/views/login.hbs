@@ -1,0 +1,21 @@
+{{> header}}
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" onsubmit="login(); return false;">
+      <input type="text" id="nif" placeholder="Contribuinte" onchange="validateNIF();"/>
+      <input type="password" id="password" placeholder="Password"/>
+      <div class="checkbox">
+        <label for="keep_logged" id="keep_credentials_text">
+        <input type="checkbox" id="keep_logged" name="keep_logged" value="keep_logged">Guardar Credenciais</label>
+      </div>
+      <br>
+      <button>Login</button>
+      <p class="message">Perdeu a sua password? <a href="#">Clique aqui</a></p>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>
+
+{{> footer}}
+
+<script src="/js/login.js"></script>
