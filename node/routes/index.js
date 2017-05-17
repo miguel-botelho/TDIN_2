@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var book = require('../database/book.js');
 var user = require('../database/user.js');
+var order = require('../database/order.js');
 
 router.get('/', function (req, res) {
     book.getAllBooks((books) => {
@@ -14,6 +15,9 @@ router.post('/order', function (req, res) {
         res.redirect('/login');
     } else { // place order
         console.log(req.body);
+        order.placeOrder(req.session.user, req.body.quantity, req.body.title, (response) => {
+            res.redirect('/orders');
+        });
     }
 });
 
