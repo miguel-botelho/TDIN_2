@@ -1,0 +1,31 @@
+{{> header}}
+<br>
+<br>
+<br>
+
+<div class="container">
+  <h1>Encomendas</h1>
+  <p>As suas encomendas:</p>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Número da Encomenda</th>
+        <th>Quantidade</th>
+        <th>Livro</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each orders}}
+      <tr>
+        <td>{{uuid}}</td>
+        <td>{{quantity}}</td>
+        <td>{{title}}</td>
+        <td>{{state}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>
+
+{{> footer}}

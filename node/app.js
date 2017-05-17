@@ -14,6 +14,9 @@ const user = require('./database/user.js');
 const book = require('./database/book.js');
 const order = require('./database/order.js');
 
+var index = require('./routes/index');
+var orders = require('./routes/orders');
+
 const app = express();
 
 // view engine setup
@@ -40,6 +43,10 @@ bb.extend(app, {
     upload: true,
     allowedPath: /./,
 });
+
+
+app.use('/', index);
+app.use('/orders', orders);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

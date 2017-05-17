@@ -30,6 +30,13 @@ function placeOrder(email, quantity, title, callback) {
     });
 }
 
+function getAllOrdersByEmail(email, callback) {
+    const stmt = db.prepare('SELECT * FROM Encomenda WHERE email = ?');
+    stmt.all(email, (err, orders) => {
+        callback(orders);
+    });
+}
+
 // to be called when the gui client is called in the warehouse
 function updateOrderByWarehouse(uuid, callback) {
     const date = new Date();
@@ -118,4 +125,5 @@ function sendEmail(receiver, message, next) {
 
 module.exports = {
     placeOrder,
+    getAllOrdersByEmail,
 };

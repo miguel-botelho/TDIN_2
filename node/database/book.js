@@ -8,6 +8,14 @@ function createBook(title, stock, price, callback) {
     });
 }
 
+function getAllBooks(callback) {
+    const stmt = db.prepare('SELECT * FROM Book;');
+    stmt.all((err, rows) => {
+        callback(rows);
+    });
+}
+
 module.exports = {
     createBook,
+    getAllBooks,
 };

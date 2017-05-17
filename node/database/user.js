@@ -5,7 +5,9 @@ function createUser(name, password, address, email, callback) {
     const stmt = db.prepare('INSERT INTO User(email, name, password, address) VALUES(?,?,?,?);');
     stmt.get([email, name, password, address], (err, row) => {
         stmt.finalize();
-        callback(row);
+        if (err)
+            callback(err);
+        else callback(row);
     });
 }
 
