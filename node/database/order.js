@@ -2,6 +2,8 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('database/database.db');
 const nodemailer = require('nodemailer');
 const uuidV4 = require('uuid/v4');
+var http = require('http');
+var io = require('socket.io')(http);
 
 function placeOrder(email, quantity, title, callback) {
     const date = new Date();
@@ -9,19 +11,37 @@ function placeOrder(email, quantity, title, callback) {
     let stmt = db.prepare('SELECT * FROM Book WHERE title = ?');
     // get the book
     stmt.get(title, (err, book) => {
-        if (book.stock > quantity) { // place the order, discount on the quantity and send an e-mail
-            discountStockOnBook(quantity, book.stock, title, () => {
-                createOrder(email, title, quantity, 'Dispatch Will Ocurr At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear(), (uuid) => {
-                    sendEmail(email, 'Dispatching order number: ' + uuid + ' at ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
-                        + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: '
-                        + (book.price * quantity), (response) => {
-                            callback(response);
-                        });
+        stmt = db.prepare('SELECT * FROM User WHERE email = ?');
+        stmt.get(email, (err, user) => {
+            if (book.stock > quantity) { // place the order, discount on the quantity and send an e-mail
+                discountStockOnBook(quantity, book.stock, title, () => {
+                    createOrder(email, title, quantity, 'Dispatch Will Ocurr At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear(), (uuid) => {
+                        sendEmail(email, 'Dispatching order number: ' + uuid + ' at ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+                            + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: '
+                            + (book.price * quantity), (response) => {
+                                var json = {
+                                    'user': {
+                                        'email': email,
+                                        'name': user.name,
+                                        'address': user.address,
+                                    },
+                                    'book': {
+                                        'Name': title,
+                                        'PageNumber': 0,
+                                        'Author': '',
+                                        'Stars': 0,
+                                        'Price': book.price,
+                                        'ISBN': 0,
+                                    },
+                                    'NumBooks': quantity + 10,
+                                    'OrderCode': uuid
+                                };
+                                io.sockets.emit('newOrder', json);
+                                callback(response);
+                            });
+                    });
                 });
-            });
-        } else { // place the order, send an e-mail and connect to the warehouse server (ask for the quantity + 10)
-            stmt = db.prepare('SELECT * FROM User WHERE email = ?');
-            stmt.get(email, (err, user) => {
+            } else { // place the order, send an e-mail and connect to the warehouse server (ask for the quantity + 10)
                 createOrder(email, title, quantity, 'Waiting Expedition', (uuid) => {
                     sendEmail(email, 'Waiting Expedition of order number: ' + uuid + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity
                         + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * quantity), (response) => {
@@ -47,16 +67,17 @@ function placeOrder(email, quantity, title, callback) {
                                         'NumBooks': quantity + 10,
                                         'OrderCode': uuid
                                     };
+                                    io.sockets.emit('newOrder', json);
                                     // Note: on Node 6 Buffer.from(msg) should be used
                                     ch.sendToQueue(q, new Buffer(json));
                                     console.log(" [x] Sent a New Order to warehouse");
+                                    callback(response);
                                 });
                             });
-                            callback(response);
                         });
                 });
-            });
-        }
+            }
+        });
     });
 }
 
