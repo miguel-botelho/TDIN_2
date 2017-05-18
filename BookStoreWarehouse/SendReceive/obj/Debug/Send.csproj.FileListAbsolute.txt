@@ -1,0 +1,7 @@
+C:\Users\danie\Desktop\BookStoreWarehouse\SendReceive\bin\Debug\SendReceive.exe.config
+C:\Users\danie\Desktop\BookStoreWarehouse\SendReceive\bin\Debug\SendReceive.exe
+C:\Users\danie\Desktop\BookStoreWarehouse\SendReceive\bin\Debug\SendReceive.pdb
+C:\Users\danie\Desktop\BookStoreWarehouse\SendReceive\bin\Debug\RabbitMQ.Client.dll
+C:\Users\danie\Desktop\BookStoreWarehouse\SendReceive\bin\Debug\RabbitMQ.Client.xml
+C:\Users\danie\Desktop\BookStoreWarehouse\SendReceive\obj\Debug\SendReceive.exe
+C:\Users\danie\Desktop\BookStoreWarehouse\SendReceive\obj\Debug\SendReceive.pdb

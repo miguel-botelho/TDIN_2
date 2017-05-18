@@ -1,0 +1,8 @@
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseServer.exe.config
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseServer.exe
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseServer.pdb
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseCommon.dll
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseCommon.pdb
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.csprojResolveAssemblyReference.cache
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.exe
+C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.pdb

@@ -1,0 +1,7 @@
+C:\Users\danie\Desktop\BookStoreWarehouse\Receive\bin\Debug\Receive.exe.config
+C:\Users\danie\Desktop\BookStoreWarehouse\Receive\bin\Debug\Receive.exe
+C:\Users\danie\Desktop\BookStoreWarehouse\Receive\bin\Debug\Receive.pdb
+C:\Users\danie\Desktop\BookStoreWarehouse\Receive\bin\Debug\RabbitMQ.Client.dll
+C:\Users\danie\Desktop\BookStoreWarehouse\Receive\bin\Debug\RabbitMQ.Client.xml
+C:\Users\danie\Desktop\BookStoreWarehouse\Receive\obj\Debug\Receive.exe
+C:\Users\danie\Desktop\BookStoreWarehouse\Receive\obj\Debug\Receive.pdb

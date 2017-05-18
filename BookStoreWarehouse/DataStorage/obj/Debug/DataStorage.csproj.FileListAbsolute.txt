@@ -1,0 +1,4 @@
+C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\bin\Debug\DataStorage.dll
+C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\bin\Debug\DataStorage.pdb
+C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\obj\Debug\DataStorage.dll
+C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\obj\Debug\DataStorage.pdb
