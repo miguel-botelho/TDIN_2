@@ -20,39 +20,41 @@ function placeOrder(email, quantity, title, callback) {
                 });
             });
         } else { // place the order, send an e-mail and connect to the warehouse server (ask for the quantity + 10)
-            createOrder(email, title, quantity, 'Waiting Expedition', (uuid) => {
-                sendEmail(email, 'Waiting Expedition of order number: ' + uuid + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity
-                    + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * quantity), (response) => {
-                        // connecting to the Warehouse Server
-                        amqp.connect('amqp://localhost', function (err, conn) {
-                            conn.createChannel(function (err, ch) {
-                                var q = 'order';
-
-                                ch.assertQueue(q, { durable: false });
-                                var json = {
-                                    'user': {
-                                        'email': email,
-                                        'name': name,
-                                        'address': address,
-                                    },
-                                    'book': {
-                                        'Name': title,
-                                        'PageNumber': 0,
-                                        'Author': 'null',
-                                        'Stars': 0,
-                                        'Price': price,
-                                        'ISBN': 0,
-                                    },
-                                    'NumBooks': quantity + 10,
-                                    'OrderCode': uuid
-                                };
-                                // Note: on Node 6 Buffer.from(msg) should be used
-                                ch.sendToQueue(q, new Buffer(json));
-                                console.log(" [x] Sent 'Hello World!'");
+            stmt = db.prepare('SELECT * FROM User WHERE email = ?');
+            stmt.get(email, (err, user) => {
+                createOrder(email, title, quantity, 'Waiting Expedition', (uuid) => {
+                    sendEmail(email, 'Waiting Expedition of order number: ' + uuid + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity
+                        + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * quantity), (response) => {
+                            // connecting to the Warehouse Server
+                            amqp.connect('amqp://localhost', function (err, conn) {
+                                conn.createChannel(function (err, ch) {
+                                    var q = 'order';
+                                    ch.assertQueue(q, { durable: false });
+                                    var json = {
+                                        'user': {
+                                            'email': email,
+                                            'name': user.name,
+                                            'address': user.address,
+                                        },
+                                        'book': {
+                                            'Name': title,
+                                            'PageNumber': 0,
+                                            'Author': '',
+                                            'Stars': 0,
+                                            'Price': book.price,
+                                            'ISBN': 0,
+                                        },
+                                        'NumBooks': quantity + 10,
+                                        'OrderCode': uuid
+                                    };
+                                    // Note: on Node 6 Buffer.from(msg) should be used
+                                    ch.sendToQueue(q, new Buffer(json));
+                                    console.log(" [x] Sent a New Order to warehouse");
+                                });
                             });
+                            callback(response);
                         });
-                        callback(response);
-                    });
+                });
             });
         }
     });
@@ -77,7 +79,7 @@ function updateOrderByWarehouse(uuid, callback) {
 }
 
 // to be called when the gui client is called in the store
-function updateOrderByWarehouse(uuid, callback) {
+function updateOrderByStore(uuid, callback) {
     const date = new Date();
     const temp = 'Dispatched At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
     // get title of book
@@ -154,4 +156,6 @@ function sendEmail(receiver, message, next) {
 module.exports = {
     placeOrder,
     getAllOrdersByEmail,
+    updateOrderByWarehouse,
+    updateOrderByStore,
 };

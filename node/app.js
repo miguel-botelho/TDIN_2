@@ -13,6 +13,7 @@ const db = new sqlite3.Database('database/database.db');
 const user = require('./database/user.js');
 const book = require('./database/book.js');
 const order = require('./database/order.js');
+const amqp = require('amqplib/callback_api');
 
 var index = require('./routes/index');
 var orders = require('./routes/orders');
@@ -78,6 +79,36 @@ app.use((err, req, res) => {
         message: err.message,
         error: {},
         title: 'JRCM: 404',
+    });
+});
+
+amqp.connect('amqp://localhost', function (err, conn) {
+    conn.createChannel(function (err, ch) {
+        var q = 'orderWarehouse';
+
+        ch.assertQueue(q, { durable: false });
+        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
+        ch.consume(q, function (msg) {
+            const json = msg.content.toJSON();
+            order.updateOrderByWarehouse(json.OrderCode, (response) => {
+                console.log(" [x] Order %s will be dispatched the day after tomorrow.", json.OrderCode);
+            });
+        }, { noAck: true });
+    });
+});
+
+amqp.connect('amqp://localhost', function (err, conn) {
+    conn.createChannel(function (err, ch) {
+        var q = 'orderStore';
+
+        ch.assertQueue(q, { durable: false });
+        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
+        ch.consume(q, function (msg) {
+            const json = msg.content.toJSON();
+            order.updateOrderByStore(json.OrderCode, (response) => {
+                console.log(" [x] Order %s will be dispatched today.", json.OrderCode);
+            });
+        }, { noAck: true });
     });
 });
 
