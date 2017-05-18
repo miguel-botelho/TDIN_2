@@ -23,6 +23,34 @@ function placeOrder(email, quantity, title, callback) {
             createOrder(email, title, quantity, 'Waiting Expedition', (uuid) => {
                 sendEmail(email, 'Waiting Expedition of order number: ' + uuid + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity
                     + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * quantity), (response) => {
+                        // connecting to the Warehouse Server
+                        amqp.connect('amqp://localhost', function (err, conn) {
+                            conn.createChannel(function (err, ch) {
+                                var q = 'order';
+
+                                ch.assertQueue(q, { durable: false });
+                                var json = {
+                                    'user': {
+                                        'email': email,
+                                        'name': name,
+                                        'address': address,
+                                    },
+                                    'book': {
+                                        'Name': title,
+                                        'PageNumber': 0,
+                                        'Author': 'null',
+                                        'Stars': 0,
+                                        'Price': price,
+                                        'ISBN': 0,
+                                    },
+                                    'NumBooks': quantity + 10,
+                                    'OrderCode': uuid
+                                };
+                                // Note: on Node 6 Buffer.from(msg) should be used
+                                ch.sendToQueue(q, new Buffer(json));
+                                console.log(" [x] Sent 'Hello World!'");
+                            });
+                        });
                         callback(response);
                     });
             });
