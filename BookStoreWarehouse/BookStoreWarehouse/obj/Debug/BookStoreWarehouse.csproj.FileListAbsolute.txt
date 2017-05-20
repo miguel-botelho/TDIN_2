@@ -14,3 +14,6 @@ C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStore
 C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.pdb
 C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\RabbitMQ.Client.dll
 C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\RabbitMQ.Client.xml
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\BookStoreWarehouse.exe.config
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.exe
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.pdb

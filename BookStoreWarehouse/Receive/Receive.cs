@@ -7,13 +7,20 @@ namespace Receive
 {
     class Receive
     {
+        public string HostName { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string channel { get; set; }
+
+
+
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = "172.30.28.65" };
+            var factory = new ConnectionFactory() { HostName = "localhost", Password = "tdin", UserName = "tdin" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: "hello",
+                channel.QueueDeclare(queue: "order",
                                      durable: false,
                                      exclusive: false,
                                      autoDelete: false,
@@ -24,9 +31,10 @@ namespace Receive
                 {
                     var body = ea.Body;
                     var message = Encoding.UTF8.GetString(body);
+                    //string json = JsonConvert.SerializeObject(message);
                     Console.WriteLine(" [x] Received {0}", message);
                 };
-                channel.BasicConsume(queue: "hello",
+                channel.BasicConsume(queue: "order",
                                      noAck: true,
                                      consumer: consumer);
 
