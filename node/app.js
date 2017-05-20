@@ -89,13 +89,14 @@ amqp.connect('amqp://localhost', function (err, conn) {
         ch.assertQueue(q, { durable: false });
         console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
         ch.consume(q, function (msg) {
-            const json = msg.content.toJSON();
-            order.updateOrderByWarehouse(json.OrderCode, (response) => {
-                console.log(" [x] Order %s will be dispatched the day after tomorrow.", json.OrderCode);
+            console.log(msg.content.toString());
+            order.updateOrderByWarehouse(msg.content.toString(), (response) => {
+                console.log(" [x] Order %s will be dispatched the day after tomorrow.", msg.content.toString());
             });
         }, { noAck: true });
     });
 });
+ 
 
 amqp.connect('amqp://localhost', function (err, conn) {
     conn.createChannel(function (err, ch) {
@@ -104,8 +105,8 @@ amqp.connect('amqp://localhost', function (err, conn) {
         ch.assertQueue(q, { durable: false });
         console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
         ch.consume(q, function (msg) {
-            const json = msg.content.toJSON();
-            order.updateOrderByStore(json.OrderCode, (response) => {
+            console.log(msg.content.toString());
+            order.updateOrderByStore(msg.content.toString(), (response) => {
                 console.log(" [x] Order %s will be dispatched today.", json.OrderCode);
             });
         }, { noAck: true });

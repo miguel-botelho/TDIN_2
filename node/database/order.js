@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const uuidV4 = require('uuid/v4');
 var http = require('http');
 var io = require('socket.io')(http);
+const amqp = require('amqplib/callback_api');
 
 function placeOrder(email, quantity, title, callback) {
     const date = new Date();
@@ -46,8 +47,11 @@ function placeOrder(email, quantity, title, callback) {
                     sendEmail(email, 'Waiting Expedition of order number: ' + uuid + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity
                         + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * quantity), (response) => {
                             // connecting to the Warehouse Server
-                            amqp.connect('amqp://localhost', function (err, conn) {
+                            console.log('OLA');
+                            amqp.connect('amqp://tdin:tdin@172.30.7.167', function (err, conn) {
+                                console.log(err);
                                 conn.createChannel(function (err, ch) {
+                                    console.log(err);
                                     var q = 'order';
                                     ch.assertQueue(q, { durable: false });
                                     var json = {
@@ -67,9 +71,9 @@ function placeOrder(email, quantity, title, callback) {
                                         'NumBooks': quantity + 10,
                                         'OrderCode': uuid
                                     };
-                                    io.sockets.emit('newOrder', json);
+                                    console.log('chegar');
                                     // Note: on Node 6 Buffer.from(msg) should be used
-                                    ch.sendToQueue(q, new Buffer(json));
+                                    ch.sendToQueue(q, new Buffer(JSON.stringify(json)));
                                     console.log(" [x] Sent a New Order to warehouse");
                                     callback(response);
                                 });
@@ -93,7 +97,7 @@ function updateOrderByWarehouse(uuid, callback) {
     const date = new Date();
     date.setDate(date.getDate() + 2);
     const temp = 'Dispatch Will Ocurr At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-    const stmt = db.prepare('UPDATE Order SET state = ? WHERE uuid = ?');
+    const stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
     stmt.get([temp, uuid], (err, row) => {
         callback(row);
     });
@@ -104,7 +108,7 @@ function updateOrderByStore(uuid, callback) {
     const date = new Date();
     const temp = 'Dispatched At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
     // get title of book
-    const stmt = db.prepare('SELECT * FROM Order WHERE uuid = ?');
+    const stmt = db.prepare('SELECT * FROM Encomenda WHERE uuid = ?');
     stmt.get(uuid, (err, order) => {
         // get stock of book
         stmt = db.prepare('SELECT * FROM Book WHERE title = ?');
@@ -113,7 +117,7 @@ function updateOrderByStore(uuid, callback) {
             stmt = db.prepare('UPDATE Book SET stock = ? WHERE title = ?');
             stmt.get([book.stock + order.quantity, order.title], (err, row) => {
                 // update the order's state
-                stmt = db.prepare('UPDATE Order SET state = ? WHERE uuid = ?');
+                stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
                 stmt.get([temp, uuid], (err, row) => {
                     sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
                         + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
