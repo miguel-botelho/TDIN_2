@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>20010</numBooks>
+    <OrderCode>c243ef67-8113-43f9-962c-54e126c0afcf</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>20010</numBooks>
+    <OrderCode>72567261-b38e-4918-a488-25cb3b2864f7</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>20010</numBooks>
+    <OrderCode>8091d08f-bc51-4a73-bd9d-dc81866f5251</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>20010</numBooks>
+    <OrderCode>cbacaad9-f66e-4c28-99d0-12f8ec571c4d</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>210</numBooks>
+    <OrderCode>43682e18-0f10-4f00-b57a-2515e3655bb9</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>210</numBooks>
+    <OrderCode>43a0d029-2355-474d-94ec-ae0e663b263a</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>210</numBooks>
+    <OrderCode>d98f3fc7-b233-4157-b93d-a3ea46914faa</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>210</numBooks>
+    <OrderCode>744e9741-0a5c-4d5e-b927-15920c80b208</OrderCode>
+  </Order>
+</ArrayOfOrder>

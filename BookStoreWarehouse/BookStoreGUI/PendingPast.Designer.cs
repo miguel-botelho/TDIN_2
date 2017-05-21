@@ -1,6 +1,6 @@
-﻿namespace BookStoreWarehouse.Views
+﻿namespace BookStoreGUI
 {
-    partial class DispatchOrder
+    partial class PendingPast
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.SuspendLayout();
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(674, 352);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // PendingOrders
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "DispatchOrder";
+            this.ClientSize = new System.Drawing.Size(698, 376);
+            this.Controls.Add(this.listView1);
+            this.Name = "PendingOrders";
+            this.Text = "PendingOrders";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ListView listView1;
     }
 }

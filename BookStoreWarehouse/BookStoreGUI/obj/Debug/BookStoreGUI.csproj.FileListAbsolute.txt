@@ -1,0 +1,11 @@
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\BookStoreGUI.exe.config
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\BookStoreGUI.exe
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\BookStoreGUI.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.csprojResolveAssemblyReference.cache
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.BookStoreGUI.resources
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.Properties.Resources.resources
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.csproj.GenerateResource.Cache
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.exe
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.PendingPast.resources
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.Sell.resources

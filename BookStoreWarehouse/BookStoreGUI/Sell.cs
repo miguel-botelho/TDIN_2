@@ -8,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BookStoreWarehouse.Views
+namespace BookStoreGUI
 {
-    public partial class DispatchOrder : Form
+    public partial class Sell : Form
     {
-        public DispatchOrder()
+        public Sell()
         {
             InitializeComponent();
         }
 
-        public DispatchOrder(string header)
+        private void button1_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
-            this.Text = "adasdas";
+            MessageBox.Show("Buy books?");
         }
     }
 }

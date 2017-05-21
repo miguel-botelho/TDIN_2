@@ -2,3 +2,9 @@ C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\bin\Debug\DataStorage.dll
 C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\bin\Debug\DataStorage.pdb
 C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\obj\Debug\DataStorage.dll
 C:\Users\danie\Desktop\BookStoreWarehouse\DataStorage\obj\Debug\DataStorage.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\DataStorage\bin\Debug\DataStorage.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\DataStorage\bin\Debug\DataStorage.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\DataStorage\bin\Debug\RabbitMQ.Client.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\DataStorage\bin\Debug\RabbitMQ.Client.xml
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\DataStorage\obj\Debug\DataStorage.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\DataStorage\obj\Debug\DataStorage.pdb

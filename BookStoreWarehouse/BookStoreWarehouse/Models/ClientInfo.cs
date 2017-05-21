@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Remoting;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BookStoreWarehouse.Models
 {
@@ -30,6 +26,11 @@ namespace BookStoreWarehouse.Models
             server.testLog();
         }
 
+        public List<Order> getPendingOrders()
+        {
+            return server.getPendingOrders();
+        }
+
         private ClientInfo()
         {
 
@@ -41,9 +42,24 @@ namespace BookStoreWarehouse.Models
             Console.WriteLine("Message received!");
         }
 
+        internal void InitServer()
+        {
+            server.InitServer();
+        }
+
         public void initChat(Guid guid, string address)
         {
             IClientMessage cli = (IClientMessage)RemotingServices.Connect(typeof(IClientMessage), address);
+        }
+
+        internal void addNewPendingOrder(Order order)
+        {
+           
+        }
+
+        internal void dispatchOrder(Order order)
+        {
+            server.dispatchOrder(order);
         }
     }
 
@@ -75,49 +91,6 @@ namespace BookStoreWarehouse.Models
         }
     }
 
-    public class Chats
-    {
-        public Hashtable chat_clients = new Hashtable();
-        public Hashtable chat_messages = new Hashtable();
-        public Hashtable chat_window = new Hashtable();
-
-        public Chats()
-        {
-
-        }
-        public void addNewChat(IClientMessage cli, Guid guid, string username)
-        {
-            chat_clients.Add(guid, cli);
-            //chat_window.Add(guid, new Chat(guid, username));
-        }
-
-        public bool isChattingWith(User user)
-        {
-            if (chat_clients.ContainsKey(user.guid))
-                return true;
-            else
-                return false;
-        }
-
-        public IClientMessage getRemoteClient(Guid guid)
-        {
-            return (IClientMessage)chat_clients[guid];
-        }
-
-        public void removeChat(Guid guid)
-        {
-            chat_clients.Remove(guid);
-            chat_messages.Remove(guid);
-            chat_window.Remove(guid);
-        }
-        public void addMessage(Guid guid, string message)
-        {
-            string temp = chat_messages[guid] + "\n";
-            chat_messages[guid] = temp + message;
-        }
-
-    }
-
     public class ReceiveMessage : MarshalByRefObject, IClientMessage
     {
 
@@ -133,7 +106,7 @@ namespace BookStoreWarehouse.Models
 
         public void notifyNewPendingOrder(Order order)
         {
-            throw new NotImplementedException();
+            ClientInfo.Instance.addNewPendingOrder(order);
         }
     }
 }

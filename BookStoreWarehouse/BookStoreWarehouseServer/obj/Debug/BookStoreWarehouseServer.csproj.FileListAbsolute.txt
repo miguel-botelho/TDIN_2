@@ -6,3 +6,17 @@ C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\Boo
 C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.csprojResolveAssemblyReference.cache
 C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.exe
 C:\Users\danie\Desktop\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseServer.exe.config
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseServer.exe
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseServer.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseCommon.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\RabbitMQ.Client.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\BookStoreWarehouseCommon.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\RabbitMQ.Client.xml
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.csprojResolveAssemblyReference.cache
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.exe
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\obj\Debug\BookStoreWarehouseServer.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\DataStorage.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseServer\bin\Debug\DataStorage.pdb
