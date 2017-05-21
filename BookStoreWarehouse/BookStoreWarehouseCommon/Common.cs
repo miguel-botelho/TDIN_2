@@ -32,6 +32,7 @@ public interface ISingleServer
     void addPastOrder(Order order);
     void InitServer();
     void dispatchOrder(Order order);
+    void deletePendingOrder(Order o);
 }
 
 public class SingleServer : MarshalByRefObject, ISingleServer
@@ -137,6 +138,8 @@ public class SingleServer : MarshalByRefObject, ISingleServer
         storage.SaveObject<List<Order>>(pastOrders, "pastOrders.bin");
     }
 
+
+
     public void testLog()
     {
         Console.WriteLine("testlog!");
@@ -188,9 +191,14 @@ public class SingleServer : MarshalByRefObject, ISingleServer
     {
         Send(order.OrderCode);
         addPastOrder(order);
-        NotifyClients(Operation.NewPastOrder, order);
-        NotifyClients(Operation.DeletePendingOrder, order);
+        deletePendingOrder(order);
+    }
 
+    public void deletePendingOrder(Order o)
+    {
+        pendingOrders.Remove(o);
+        storage.SaveObject<List<Order>>(pendingOrders, "pendingOrders.bin");
+        NotifyClients(Operation.DeletePendingOrder, o);
     }
 }
 

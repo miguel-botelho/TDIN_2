@@ -32,3 +32,21 @@ C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\Ne
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\RabbitMQ.Client.xml
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\DataStorage.dll
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\DataStorage.pdb
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\BookStoreWarehouse.exe.config
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\BookStoreWarehouse.exe
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\BookStoreWarehouse.pdb
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\BookStoreWarehouseCommon.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\Newtonsoft.Json.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\RabbitMQ.Client.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\DataStorage.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\BookStoreWarehouseCommon.pdb
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\Newtonsoft.Json.xml
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\RabbitMQ.Client.xml
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\DataStorage.pdb
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.csprojResolveAssemblyReference.cache
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.Properties.Resources.resources
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.Views.LoginInfo.resources
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.MainMenu.resources
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.csproj.GenerateResource.Cache
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.exe
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.pdb

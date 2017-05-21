@@ -16,3 +16,14 @@ C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\De
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\obj\Debug\BookStoreWarehouseCommon.csprojResolveAssemblyReference.cache
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\DataStorage.dll
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\DataStorage.pdb
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\BookStoreWarehouseCommon.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\BookStoreWarehouseCommon.pdb
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\DataStorage.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\Newtonsoft.Json.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\RabbitMQ.Client.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\DataStorage.pdb
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\Newtonsoft.Json.xml
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\bin\Debug\RabbitMQ.Client.xml
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\obj\Debug\BookStoreWarehouseCommon.csprojResolveAssemblyReference.cache
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\obj\Debug\BookStoreWarehouseCommon.dll
+D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouseCommon\obj\Debug\BookStoreWarehouseCommon.pdb
