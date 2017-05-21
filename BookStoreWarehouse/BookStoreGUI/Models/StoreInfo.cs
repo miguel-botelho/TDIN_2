@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using BookStoreGUI.Models;
+using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting;
 
 namespace BookStoreWarehouse.Models
 {
@@ -10,7 +9,8 @@ namespace BookStoreWarehouse.Models
 
         public List<Order> pendingOrders { get; set; }
         public List<Order> pastOrders { get; set; }
-        public List<Book> availableBooks { get; set; }
+        public List<StoreBook> availableBooks = new List<StoreBook>();
+        public SocketClientServer service = new SocketClientServer();
 
         private static StoreInfo instance;
     
@@ -24,9 +24,23 @@ namespace BookStoreWarehouse.Models
             }
         }
 
-        internal void load()
+
+        private StoreInfo()
         {
-            //throw new NotImplementedException();
+            service.initServices();
+            loadData();
+        }
+
+        internal void loadData()
+        {
+            //THIS FUNCTION LOADS ALL THE NECESSARY INFO IN THE SERVER
+            service.refreshAvailableBooks();
+        }
+
+        internal void refreshAvailableBooks(List<StoreBook> books)
+        {
+            this.availableBooks = books;
+            BookStoreGUI.BookStoreGUI.Instance.refreshAvailableBooks();
         }
 
         public List<Order> getPendingOrders()
@@ -34,10 +48,6 @@ namespace BookStoreWarehouse.Models
             throw new NotImplementedException();
         }
 
-        private StoreInfo()
-        {
-
-        }
                
         public void dispatchOrder(Order order)
         {
@@ -49,5 +59,9 @@ namespace BookStoreWarehouse.Models
             throw new NotImplementedException();
         }
 
+        public void refreshAvailableBooks()
+        {
+            service.refreshAvailableBooks();
+        }
     }
 }

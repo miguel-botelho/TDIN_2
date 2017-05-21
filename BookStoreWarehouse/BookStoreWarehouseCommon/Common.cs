@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 public delegate void AlterDelegate(Operation op, Object obj);
 
-public enum Operation { NewPendingOrder,NewPastOrder,DeletePendingOrder,DeletePastOrder };
+public enum Operation { NewPendingOrder,NewPastOrder,DeletePendingOrder,DeletePastOrder,RefreshAvailableBooks };
 
 
 public interface IClientMessage
@@ -262,6 +262,32 @@ public class Order
     public Order()
     {
 
+    }
+    public Order(User user,Book book,int numBooks)
+    {
+        this.user = user;
+        this.book = book;
+        this.numBooks = numBooks;
+    }
+}
+
+[Serializable]
+public class StoreBook
+{
+    public String title { get; set; }
+    public double price { get; set; }
+    public int stock { get; set; }
+
+    public StoreBook()
+    {
+
+    }
+
+    public StoreBook(String title, double price, int stock)
+    {
+        this.title = title;
+        this.stock = stock;
+        this.price = price;
     }
 }
 

@@ -1,9 +1,8 @@
-﻿using Quobject.SocketIoClientDotNet.Client;
+﻿using BookStoreWarehouse.Models;
+using Newtonsoft.Json;
+using Quobject.SocketIoClientDotNet.Client;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace BookStoreGUI.Models
@@ -13,12 +12,16 @@ namespace BookStoreGUI.Models
         Socket socket = IO.Socket("http://172.30.28.65:3000");
 
 
-        public void Send(string s)
+        public void initServices()
         {
-            socket.Emit("sell","caralho");
+            socket.On("AvailableBooks", (data) =>
+            {
+                string json = (string)data;
+                List<StoreBook> books = JsonConvert.DeserializeObject<List<StoreBook>>(json);
+                StoreInfo.Instance.refreshAvailableBooks(books);
+            });
         }
        
-
         public void start()
         {
             
@@ -33,7 +36,20 @@ namespace BookStoreGUI.Models
                 Console.WriteLine(data);
                 socket.Disconnect();
             });
+
             Console.ReadLine();
+        }
+
+        public void refreshAvailableBooks()
+        {
+            socket.Emit("AvailableBooks","asdas");
+        }
+
+        public void createOrder(Order order)
+        {
+            string json = JsonConvert.SerializeObject(order);
+            socket.Emit("NewOrder",json);
+            //throw new NotImplementedException();
         }
     }
 }

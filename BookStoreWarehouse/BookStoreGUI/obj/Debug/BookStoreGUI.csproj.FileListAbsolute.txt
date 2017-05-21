@@ -8,7 +8,6 @@ C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStor
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.exe
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.pdb
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.PendingPast.resources
-C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.Sell.resources
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\BookStoreWarehouseCommon.dll
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\EngineIoClientDotNet.dll
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\Newtonsoft.Json.dll
@@ -20,3 +19,4 @@ C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\BookStor
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\Newtonsoft.Json.xml
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\DataStorage.pdb
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\bin\Debug\RabbitMQ.Client.xml
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreGUI\obj\Debug\BookStoreGUI.CreateOrderSell.resources
