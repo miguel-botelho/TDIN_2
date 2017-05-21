@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStoreGUI.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +34,12 @@ namespace BookStoreGUI
         {
             Sell s = new Sell();
             s.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SocketClientServer s = new SocketClientServer();
+            s.Send("asdasd");
         }
     }
 }
