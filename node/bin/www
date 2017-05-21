@@ -5,9 +5,8 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('Mentes-Empreendedoras:server');
+var debug = require('debug')('TDIN:server');
 var http = require('http');
-var io = require('socket.io')(http);
 
 /**
  * Get port from environment and store in Express.
@@ -30,12 +29,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Sockets
- */
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
+var io = require('socket.io')(server);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -85,6 +79,24 @@ function onError(error) {
   }
 }
 
+function receiveSockets() {
+  io.on('connection', (socket) => {
+    socket.on('sell', (data) => {
+      console.log(data);
+    });
+
+    socket.on('order', (data) => {
+      console.log(data);
+    });
+  });
+}
+
+function emitSocket(name, message) {
+  io.on('connection', function (socket) {
+    socket.emit(name, message);
+  });
+}
+
 /**
  * Event listener for HTTP server "listening" event.
  */
@@ -96,3 +108,8 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+module.exports = {
+  receiveSockets: receiveSockets,
+  emitSocket: emitSocket,
+};

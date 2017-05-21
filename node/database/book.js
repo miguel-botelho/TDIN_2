@@ -8,6 +8,16 @@ function createBook(title, stock, price, callback) {
     });
 }
 
+function addBookQuantity(title, quantity, callback) {
+    var stmt = db.prepare('SELECT * From Book WHERE title = ?');
+    stmt.get(title, (err, book) => {
+        stmt = db.prepare('UPDATE Book SET stock = ? WHERE title = ?');
+        stmt.get([book.stock + quantity, title], (err, row) => {
+            callback(row);
+        });
+    });
+}
+
 function getAllBooks(callback) {
     const stmt = db.prepare('SELECT * FROM Book;');
     stmt.all((err, rows) => {
@@ -18,4 +28,5 @@ function getAllBooks(callback) {
 module.exports = {
     createBook,
     getAllBooks,
+    addBookQuantity,
 };

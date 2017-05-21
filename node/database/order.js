@@ -2,8 +2,8 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('database/database.db');
 const nodemailer = require('nodemailer');
 const uuidV4 = require('uuid/v4');
-var http = require('http');
-var io = require('socket.io')(http);
+const sockets = require('../app.js');
+const async = require('async');
 const amqp = require('amqplib/callback_api');
 
 function placeOrder(email, quantity, title, callback) {
@@ -37,8 +37,8 @@ function placeOrder(email, quantity, title, callback) {
                                     'NumBooks': Number(quantity) + 10,
                                     'OrderCode': uuid
                                 };
-                                io.sockets.emit('newOrder', json);
-                                callback(response);
+                                sockets.emitSocket('newOrder', json);
+                                callback(uuid);
                             });
                     });
                 });
@@ -73,7 +73,7 @@ function placeOrder(email, quantity, title, callback) {
                                     // Note: on Node 6 Buffer.from(msg) should be used
                                     ch.sendToQueue(q, new Buffer(JSON.stringify(json)));
                                     console.log(" [x] Sent a New Order to warehouse");
-                                    callback(response);
+                                    callback(uuid);
                                 });
                             });
                         });
@@ -113,14 +113,31 @@ function updateOrderByStore(uuid, callback) {
         stmt.get(order.title, (err, book) => {
             // update stock of book
             stmt = db.prepare('UPDATE Book SET stock = ? WHERE title = ?');
-            stmt.get([book.stock + order.quantity, order.title], (err, row) => {
-                // update the order's state
-                stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
-                stmt.get([temp, uuid], (err, row) => {
-                    sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
-                        + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
-                            callback(response);
+            stmt.get([order.quantity + 10, order.title], (err, row) => {
+                // check all other orders
+                stmt = db.prepare('SELECT * FROM Encomenda WHERE title = ? AND quantity <= ?');
+                stmt.all([order.title, order.quantity + 10], (err, rows) => {
+                    async.each(rows, (row, next) => {
+                        stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
+                        stmt.get([temp, uuid], (err, r) => {
+                            // é preciso chamar socket???
+                            sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
+                                + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
+                                    next();
+                                });
                         });
+                    }, (err) => {
+                        // update the order's state
+                        if (!order.status.includes('Dispatched')) {
+                            stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
+                            stmt.get([temp, uuid], (err, row) => {
+                                sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
+                                    + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
+                                        callback(response);
+                                    });
+                            });
+                        }
+                    });
                 });
             });
         });
@@ -130,6 +147,13 @@ function updateOrderByStore(uuid, callback) {
 function discountStockOnBook(quantity, quantityBook, title, callback) {
     const stmt = db.prepare('UPDATE Book SET stock = ? WHERE title = ?');
     stmt.get([quantityBook - quantity, title], (err, row) => {
+        callback(row);
+    });
+}
+
+function getOrder(uuid, callback) {
+    const stmt = db.prepare('SELECT * FROM Encomenda, Book WHERE uuid = ?');
+    stmt.get(uuid, (err, row) => {
         callback(row);
     });
 }
@@ -181,4 +205,5 @@ module.exports = {
     getAllOrdersByEmail,
     updateOrderByWarehouse,
     updateOrderByStore,
+    getOrder,
 };
