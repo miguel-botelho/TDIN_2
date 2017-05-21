@@ -66,7 +66,7 @@ if (app.get('env') === 'development') {
         res.render('404', {
             message: err.message,
             error: err,
-            title: 'JRCM: 404',
+            title: 'TDIN: 404',
         });
     });
 }
@@ -78,7 +78,7 @@ app.use((err, req, res) => {
     res.render('404', {
         message: err.message,
         error: {},
-        title: 'JRCM: 404',
+        title: 'TDIN: 404',
     });
 });
 

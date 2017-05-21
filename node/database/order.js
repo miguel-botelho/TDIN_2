@@ -34,7 +34,7 @@ function placeOrder(email, quantity, title, callback) {
                                         'Price': book.price,
                                         'ISBN': 0,
                                     },
-                                    'NumBooks': quantity + 10,
+                                    'NumBooks': Number(quantity) + 10,
                                     'OrderCode': uuid
                                 };
                                 io.sockets.emit('newOrder', json);
@@ -47,7 +47,6 @@ function placeOrder(email, quantity, title, callback) {
                     sendEmail(email, 'Waiting Expedition of order number: ' + uuid + '.\n\nTitle: ' + title + '.\nQuantity: ' + quantity
                         + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * quantity), (response) => {
                             // connecting to the Warehouse Server
-                            console.log('OLA');
                             amqp.connect('amqp://tdin:tdin@172.30.7.167', function (err, conn) {
                                 console.log(err);
                                 conn.createChannel(function (err, ch) {
@@ -68,10 +67,9 @@ function placeOrder(email, quantity, title, callback) {
                                             'Price': book.price,
                                             'ISBN': 0,
                                         },
-                                        'NumBooks': quantity + 10,
+                                        'NumBooks': Number(quantity) + 10,
                                         'OrderCode': uuid
                                     };
-                                    console.log('chegar');
                                     // Note: on Node 6 Buffer.from(msg) should be used
                                     ch.sendToQueue(q, new Buffer(JSON.stringify(json)));
                                     console.log(" [x] Sent a New Order to warehouse");
