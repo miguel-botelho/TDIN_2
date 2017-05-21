@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
 public delegate void AlterDelegate(Operation op, Object obj);
 
-public enum Operation { NewPendingOrder,NewPastOrder };
+public enum Operation { NewPendingOrder,NewPastOrder,DeletePendingOrder,DeletePastOrder };
 
 
 public interface IClientMessage
@@ -21,29 +25,126 @@ public interface ISingleServer
 {
     event AlterDelegate alterEvent;
 
+    List<Order> getPendingOrders();
     void SomeCall(Guid guid);
     void testLog();
     void addPendingOrder(Order order);
+    void addPastOrder(Order order);
+    void InitServer();
+    void dispatchOrder(Order order);
 }
 
 public class SingleServer : MarshalByRefObject, ISingleServer
 {
-    List<Order> pastOrders;
-    List<Order> pendingOrders;
+    volatile List<Order> pastOrders = new List<Order>();
+    volatile List<Order> pendingOrders = new List<Order>();
+    Storage storage = new Storage();
+    //SEND
+    ConnectionFactory factorySend = new ConnectionFactory() { HostName = "172.30.28.65", Password = "tdin", UserName = "tdin" };
+    IConnection connectionSend;
+    IModel channelSend;
 
+
+    public SingleServer()
+    {
+        List<Order> temp1 = storage.LoadObject<List<Order>>("pendingOrders.bin");
+        List<Order> temp2 = storage.LoadObject<List<Order>>("pastOrders.bin");
+        if (temp1 != null)
+            pendingOrders = temp1;
+        if(temp2 != null)
+            pastOrders = temp2;
+
+        //RECEIVE
+        Thread thread1 = new Thread(() =>
+        Receive()
+        );
+        thread1.Start();
+
+
+        //SEND
+        connectionSend = factorySend.CreateConnection();
+        channelSend = connectionSend.CreateModel();
+    }
+
+    private void Send(string orderID)
+    {
+
+        channelSend.QueueDeclare(queue: "orderWarehouse",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
+
+            var body = Encoding.UTF8.GetBytes(orderID);
+
+        channelSend.BasicPublish(exchange: "",
+                                 routingKey: "orderWarehouse",
+                                 basicProperties: null,
+                                 body: body);
+            Console.WriteLine(" [x] Sent {0}", orderID);
+        
+    }
+
+    private void Receive()
+    {
+        ConnectionFactory factory = new ConnectionFactory() { HostName = "localhost", Password = "tdin", UserName = "tdin" };
+        using (var connection = factory.CreateConnection())
+        using (var channel = connection.CreateModel())
+        {
+            channel.QueueDeclare(queue: "order",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
+            var consumer = new EventingBasicConsumer(channel);
+            consumer.Received += (model, ea) =>
+            {
+                var body = ea.Body;
+                var message = Encoding.UTF8.GetString(body);
+                string json = @message;
+                Order order = JsonConvert.DeserializeObject<Order>(json);
+                addPendingOrder(order);
+                Console.WriteLine(" [x] Received {0}", order.OrderCode);
+                Console.WriteLine("Name: "+order.book.Name);
+            };
+            channel.BasicConsume(queue: "order",
+                                 noAck: true,
+                                 consumer: consumer);
+
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+        }
+    }
 
     public event AlterDelegate alterEvent;
 
     public void addPendingOrder(Order order)
     {
         pendingOrders.Add(order);
+        Console.WriteLine("TOTAL: " + pendingOrders.Count);
         Console.WriteLine("[PendingOrder] Pending order: " + order.OrderCode);
         NotifyClients(Operation.NewPendingOrder, order);
+        storage.SaveObject<List<Order>>(pendingOrders, "pendingOrders.bin");
+    }
+
+    public void addPastOrder(Order order)
+    {
+        pastOrders.Add(order);
+        Console.WriteLine("[PastOrders] PastOrder order: " + order.OrderCode);
+        NotifyClients(Operation.NewPastOrder, order);
+        storage.SaveObject<List<Order>>(pastOrders, "pastOrders.bin");
     }
 
     public void testLog()
     {
         Console.WriteLine("testlog!");
+    }
+
+    public List<Order> getPendingOrders()
+    {
+        return pendingOrders;
     }
 
     public void SomeCall(Guid guid)
@@ -77,7 +178,20 @@ public class SingleServer : MarshalByRefObject, ISingleServer
             }
         }
     }
-  
+
+    public void InitServer()
+    {
+        //call to init server objects
+    }
+
+    public void dispatchOrder(Order order)
+    {
+        Send(order.OrderCode);
+        addPastOrder(order);
+        NotifyClients(Operation.NewPastOrder, order);
+        NotifyClients(Operation.DeletePendingOrder, order);
+
+    }
 }
 
 public class AlterEventRepeater : MarshalByRefObject
@@ -99,61 +213,35 @@ public class AlterEventRepeater : MarshalByRefObject
 [Serializable]
 public class User
 {
-    public Guid guid { get; set; }
+    public string email { get; set; }
     public string name { get; set; }
     public string address { get; set; }
 
-    public User() : this(Guid.Empty, "", "")
+    public User()
     {
+
     }
 
-    public User(Guid guid, string name, string address)
+    public User(string email, string name, string address)
     {
-        this.guid = guid;
+        this.email = email;
         this.name = name;
         this.address = address;
-    }
-}
-
-public class Utils
-{
-    public static int SERVER_PORT = 9000;
-
-    public static void InvokeFix(Control control, Action action)
-    {
-        if (control.InvokeRequired)
-        {
-            control.Invoke(new MethodInvoker(delegate { action(); }));
-        }
-        else
-        {
-            action();
-        }
-    }
-}
-
-[Serializable]
-public class PublicMessage
-{
-    public string chatRoom;
-    public string sender;
-    public string message;
-
-    public PublicMessage(string chatRoom, string sender, string message)
-    {
-        this.chatRoom = chatRoom;
-        this.sender = sender;
-        this.message = message;
     }
 }
 
 [Serializable]
 public class Order
 {
-    public String user { get; set; }
+    public User user { get; set; }
     public Book book { get; set; }
     public int numBooks { get; set; }
     public String OrderCode { get; set; }
+
+    public Order()
+    {
+
+    }
 }
 
 [Serializable]
@@ -179,5 +267,53 @@ public class Book
         this.Stars = Stars;
         this.Price = Price;
         this.ISBN = ISBN;
+    }
+}
+
+class Receive
+{
+    public string HostName { get; set; }
+    public string UserName { get; set; }
+    public string Password { get; set; }
+    public string Channel { get; set; }
+
+    public Receive(string HostName, string UserName, string Password, string Channel)
+    {
+        this.HostName = HostName;
+        this.UserName = UserName;
+        this.Password = Password;
+        this.Channel = Channel;
+    }
+
+    public void start(Action<Order> addPendingOrder)
+    {
+        ConnectionFactory factory = new ConnectionFactory() { HostName = HostName, Password = Password, UserName = UserName };
+        using (var connection = factory.CreateConnection())
+        using (var channel = connection.CreateModel())
+        {
+            channel.QueueDeclare(queue: Channel,
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
+            var consumer = new EventingBasicConsumer(channel);
+            consumer.Received += (model, ea) =>
+            {
+                var body = ea.Body;
+                var message = Encoding.UTF8.GetString(body);
+                string json = @message;
+                Order order = JsonConvert.DeserializeObject<Order>(json);
+                addPendingOrder(order);
+                Console.WriteLine(" [x] Received {0}", order.OrderCode);
+            };
+
+            /*channel.BasicConsume(queue: Channel,
+                                 noAck: true,
+                                 consumer: consumer);*/
+
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+        }
     }
 }

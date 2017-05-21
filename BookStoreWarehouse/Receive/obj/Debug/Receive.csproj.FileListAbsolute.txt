@@ -12,3 +12,8 @@ C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\RabbitMQ.Clie
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\RabbitMQ.Client.xml
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\obj\Debug\Receive.exe
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\obj\Debug\Receive.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\BookStoreWarehouseCommon.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\Newtonsoft.Json.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\BookStoreWarehouseCommon.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\Newtonsoft.Json.xml
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\obj\Debug\Receive.csprojResolveAssemblyReference.cache

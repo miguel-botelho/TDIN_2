@@ -55,13 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelViews\MainViewModel.cs" />
-    <Compile Include="Views\DispatchOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\DispatchOrder.Designer.cs">
-      <DependentUpon>DispatchOrder.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoginInfo.cs">
       <SubType>Form</SubType>
     </Compile>
