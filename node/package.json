@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node app.js",
     "debug": "node --debug ./bin/www"
   },
   "dependencies": {
     "amqplib": "^0.5.1",
+    "async": "^2.4.0",
     "body-parser": "^1.16.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.1",

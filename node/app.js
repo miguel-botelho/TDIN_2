@@ -49,39 +49,6 @@ bb.extend(app, {
 app.use('/', index);
 app.use('/orders', orders);
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use((err, req, res) => {
-        res.status(err.status || 500);
-        res.render('404', {
-            message: err.message,
-            error: err,
-            title: 'TDIN: 404',
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use((err, req, res) => {
-    res.status(err.status || 500);
-    res.render('404', {
-        message: err.message,
-        error: {},
-        title: 'TDIN: 404',
-    });
-});
-
 amqp.connect('amqp://localhost', function (err, conn) {
     conn.createChannel(function (err, ch) {
         var q = 'orderWarehouse';
@@ -96,7 +63,6 @@ amqp.connect('amqp://localhost', function (err, conn) {
         }, { noAck: true });
     });
 });
- 
 
 amqp.connect('amqp://localhost', function (err, conn) {
     conn.createChannel(function (err, ch) {
@@ -113,4 +79,84 @@ amqp.connect('amqp://localhost', function (err, conn) {
     });
 });
 
-module.exports = app;
+var debug = require('debug')('TDIN:server');
+var http = require('http');
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+var server = http.createServer(app);
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+var io = require('socket.io')(server);
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+    return false;
+}
+
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+    var bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+function receiveSockets() {
+    io.on('connection', (socket) => {
+        socket.on('sell', (data) => {
+            order.placeOrder(data.user.email, data.NumBooks, data.book.Name, (respo) => {
+                console.log('Order ' + respo + ' placed.');
+            });
+        });
+
+        socket.on('accept', (uuid) => {
+            order.updateOrderByStore(uuid, (respo) => {
+                console.log('Accepted order ' + uuid);
+            });
+        });
+    });
+}
+
+function emitSocket(name, message) {
+    io.on('connection', function (socket) {
+        socket.emit(name, message);
+    });
+}
+
+function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+}
+
+receiveSockets();
+
+module.exports = {
+    emitSocket: emitSocket,
+};
