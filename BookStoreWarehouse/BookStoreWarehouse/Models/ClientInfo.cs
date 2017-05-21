@@ -9,7 +9,7 @@ namespace BookStoreWarehouse.Models
     {
         private static ClientInfo instance;
         public static ISingleServer server = (ISingleServer)R.New(typeof(ISingleServer));
-
+        public static Boolean serverStatus = false;
 
         public static ClientInfo Instance
         {
@@ -19,11 +19,6 @@ namespace BookStoreWarehouse.Models
                     instance = new ClientInfo();
                 return instance;
             }
-        }
-
-        internal void click()
-        {
-            server.testLog();
         }
 
         public List<Order> getPendingOrders()
@@ -42,24 +37,19 @@ namespace BookStoreWarehouse.Models
             Console.WriteLine("Message received!");
         }
 
-        internal void InitServer()
+        internal void RefreshServer()
         {
-            server.InitServer();
-        }
-
-        public void initChat(Guid guid, string address)
-        {
-            IClientMessage cli = (IClientMessage)RemotingServices.Connect(typeof(IClientMessage), address);
-        }
-
-        internal void addNewPendingOrder(Order order)
-        {
-           
+            server.RefreshServer();
         }
 
         internal void dispatchOrder(Order order)
         {
             server.dispatchOrder(order);
+        }
+
+        internal List<Order> getPastOrders()
+        {
+            return server.getPastOrders();
         }
     }
 
@@ -90,7 +80,6 @@ namespace BookStoreWarehouse.Models
             wellKnownTypes = types;
         }
     }
-
     public class ReceiveMessage : MarshalByRefObject, IClientMessage
     {
 
@@ -101,12 +90,14 @@ namespace BookStoreWarehouse.Models
 
         public void notifyNewPastOrder(Order order)
         {
+
+            Console.WriteLine("MEREDASAASDASDAS-2");
             throw new NotImplementedException();
         }
 
         public void notifyNewPendingOrder(Order order)
         {
-            ClientInfo.Instance.addNewPendingOrder(order);
+            throw new NotImplementedException();
         }
     }
 }

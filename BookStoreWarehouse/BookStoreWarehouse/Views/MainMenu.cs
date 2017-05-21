@@ -3,6 +3,7 @@ using BookStoreWarehouse.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace BookStoreWarehouse
@@ -31,10 +32,28 @@ namespace BookStoreWarehouse
 
         public MainMenu()
         {
-            ClientInfo.Instance.InitServer();
+            ClientInfo.Instance.RefreshServer();
             InitializeComponent();
             setupListView();
             loadPendingOrders();
+            loadPastOrders();
+            
+            System.Timers.Timer myTimer = new System.Timers.Timer();
+            myTimer.Elapsed += new ElapsedEventHandler(myEvent);
+            myTimer.Interval = 5000;
+            myTimer.Enabled = true;
+        }
+
+        // Implement a call with the right signature for events going off
+        private void myEvent(object source, ElapsedEventArgs e) {
+            try
+            {
+                ClientInfo.server.RefreshServer();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void loadPendingOrders()
@@ -48,6 +67,15 @@ namespace BookStoreWarehouse
             }
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void loadPastOrders()
+        {
+            List<Order> past = ClientInfo.Instance.getPastOrders();
+            foreach (Order o in past)
+            {
+                pastOrders.Add(o.OrderCode, o);
+            }
         }
 
 
@@ -73,7 +101,8 @@ namespace BookStoreWarehouse
                     pendingOrders.Add(((Order)obj).OrderCode, (Order)obj);
                     ListViewItem lvUsr = new ListViewItem(new string[] { ((Order)obj).OrderCode, ((Order)obj).book.Name, ((Order)obj).book.Price.ToString(), ((Order)obj).numBooks.ToString(),((Order)obj).user.name });
                     lvUsr.Tag = ((Order)obj);
-                    BeginInvoke(lvAdd, new object[] { lvUsr });
+                    if(button5.Enabled != false)
+                        BeginInvoke(lvAdd, new object[] { lvUsr });
                     break;
                 case Operation.NewPastOrder:
                     if (!pastOrders.ContainsKey(((Order)obj).OrderCode))
@@ -118,11 +147,6 @@ namespace BookStoreWarehouse
             ClientInfo.server.alterEvent += new AlterDelegate(evRepeater.Repeater);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ClientInfo.Instance.InitServer();
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             LoginInfo n = new LoginInfo();
@@ -159,7 +183,6 @@ namespace BookStoreWarehouse
                    Order o = (Order)pendingOrders[item.Text];
                    DoAlterations(Operation.NewPastOrder, o);
                    DoAlterations(Operation.DeletePendingOrder, o);
-
                     BeginInvoke((Action)(() => ClientInfo.Instance.dispatchOrder(o)));
                 }
                 else if (dialogResult == DialogResult.No)
@@ -174,20 +197,21 @@ namespace BookStoreWarehouse
         {
             this.button5.Enabled = false;
             listView1.Items.Clear();
-            loadOrders(pendingOrders);
+            loadOrders(pastOrders);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             this.button5.Enabled = true;
             listView1.Items.Clear();
-            loadOrders(pastOrders);
+            loadOrders(pendingOrders);
         }
 
         private void loadOrders(Hashtable orders)
         {
-            foreach(Order o in orders)
+            foreach(DictionaryEntry entry in orders)
             {
+                Order o = (Order)entry.Value;
                 ListViewItem item1 = new ListViewItem(new[] { o.OrderCode, o.book.Name, o.book.Price.ToString(), o.numBooks.ToString(), o.user.name });
                 listView1.Items.Add(item1);
             }

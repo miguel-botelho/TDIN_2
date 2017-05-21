@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStoreWarehouse.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace BookStoreGUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            StoreInfo.Instance.load();
             Application.Run(new BookStoreGUI());
         }
     }
