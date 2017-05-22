@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receive", "Receive\Receive.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStoreGUI", "BookStoreGUI\BookStoreGUI.csproj", "{F007E867-1B4C-4BB2-8A8E-2A62933FC52F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterGUI", "PrinterGUI\PrinterGUI.csproj", "{0BA0A098-5227-46C0-BEF5-8A89E2771D9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{F007E867-1B4C-4BB2-8A8E-2A62933FC52F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F007E867-1B4C-4BB2-8A8E-2A62933FC52F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F007E867-1B4C-4BB2-8A8E-2A62933FC52F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA0A098-5227-46C0-BEF5-8A89E2771D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA0A098-5227-46C0-BEF5-8A89E2771D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA0A098-5227-46C0-BEF5-8A89E2771D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA0A098-5227-46C0-BEF5-8A89E2771D9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

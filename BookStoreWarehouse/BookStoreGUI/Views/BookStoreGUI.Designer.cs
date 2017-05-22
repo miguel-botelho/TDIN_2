@@ -101,11 +101,11 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(225, 532);
+            this.button7.Location = new System.Drawing.Point(12, 532);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(506, 35);
             this.button7.TabIndex = 11;
-            this.button7.Text = "Refresh";
+            this.button7.Text = "Force Refresh";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 564);
+            this.ClientSize = new System.Drawing.Size(530, 573);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button5);

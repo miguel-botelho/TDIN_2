@@ -123,6 +123,10 @@
       <Project>{4cea51dd-a87b-4ba4-b3f8-cf420acb41a3}</Project>
       <Name>BookStoreWarehouseCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PrinterGUI\PrinterGUI.csproj">
+      <Project>{0BA0A098-5227-46C0-BEF5-8A89E2771D9F}</Project>
+      <Name>PrinterGUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Info.txt" />

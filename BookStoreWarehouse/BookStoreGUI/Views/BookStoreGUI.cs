@@ -168,5 +168,14 @@ namespace BookStoreGUI
             p.ShowDialog();
             p.Close();
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.R)
+            {
+                StoreInfo.Instance.loadData();
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

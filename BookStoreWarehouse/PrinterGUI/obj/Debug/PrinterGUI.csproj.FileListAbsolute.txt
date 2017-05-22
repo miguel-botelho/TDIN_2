@@ -1,0 +1,9 @@
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\bin\Debug\PrinterGUI.exe.config
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\bin\Debug\PrinterGUI.exe
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\bin\Debug\PrinterGUI.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\obj\Debug\PrinterGUI.csprojResolveAssemblyReference.cache
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\obj\Debug\PrinterGUI.Properties.Resources.resources
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\obj\Debug\PrinterGUI.csproj.GenerateResource.Cache
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\obj\Debug\PrinterGUI.exe
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\obj\Debug\PrinterGUI.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\PrinterGUI\obj\Debug\PrinterGUI.Printer.resources

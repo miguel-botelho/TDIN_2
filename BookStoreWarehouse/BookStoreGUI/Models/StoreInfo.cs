@@ -121,7 +121,7 @@ namespace BookStoreWarehouse.Models
                 if (x != -1)
                     StoreInfo.Instance.availableBooks[x].stock -= order.numBooks;
                 //BookStoreGUI.BookStoreGUI.Instance.refreshAvailableBooks();
-
+                PrinterGUI.Printer.Instance.newOrder(order.user.name, order.user.address, order.user.email, order.book.Name, order.numBooks);
                 BookStoreGUI.BookStoreGUI.Instance.RefreshAvailableBooks(StoreInfo.Instance.availableBooks);
                 //BeginBookStoreGUI.BookStoreGUI.Instance
             }

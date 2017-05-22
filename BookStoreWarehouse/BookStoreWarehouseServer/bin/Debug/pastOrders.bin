@@ -17,4 +17,123 @@
     <numBooks>25</numBooks>
     <OrderCode>9b9ccb86-92fa-4556-8570-e6da10315c0d</OrderCode>
   </Order>
+  <Order>
+    <user>
+      <email>pigmoth@gmail.com</email>
+      <name>Daniel Reis</name>
+      <address>Rua das Carmelinhas</address>
+    </user>
+    <book>
+      <Name>Harry Potter e os Talismãs da Morte</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>20</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>60</numBooks>
+    <OrderCode>6dfcc6b8-c20c-4537-96e5-9b0839adaa53</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>pigmoth@gmail.com</email>
+      <name>Daniel Reis</name>
+      <address>Rua das Carmelinhas</address>
+    </user>
+    <book>
+      <Name>A Mensagem</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>20</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>25</numBooks>
+    <OrderCode>09597a2e-2cde-48b6-9e41-a7b94b8f179d</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>pigmoth@gmail.com</email>
+      <name>Daniel Reis</name>
+      <address>Rua das Carmelinhas</address>
+    </user>
+    <book>
+      <Name>A Mensagem</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>20</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>35</numBooks>
+    <OrderCode>a4ec142d-b6e8-4214-9495-154155261a69</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>pigmoth@gmail.com</email>
+      <name>Daniel Reis</name>
+      <address>Rua das Carmelinhas</address>
+    </user>
+    <book>
+      <Name>A Mensagem</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>20</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>20</numBooks>
+    <OrderCode>3dc229c3-9282-412f-8a76-b169f6f04a1f</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>510</numBooks>
+    <OrderCode>b26af036-a08c-4962-b445-d5bb07a1ab16</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>510</numBooks>
+    <OrderCode>37213951-6dc1-4aba-8379-77a32d6b92e5</OrderCode>
+  </Order>
+  <Order>
+    <user>
+      <email>m_botelho8@hotmail.com</email>
+      <name>Miguel Botelho</name>
+      <address>Rua Doutor Roberto Frias</address>
+    </user>
+    <book>
+      <Name>O Principezinho</Name>
+      <PageNumber>0</PageNumber>
+      <Author />
+      <Stars>0</Stars>
+      <Price>10</Price>
+      <ISBN>0</ISBN>
+    </book>
+    <numBooks>1010</numBooks>
+    <OrderCode>error</OrderCode>
+  </Order>
 </ArrayOfOrder>

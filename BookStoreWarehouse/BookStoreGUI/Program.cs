@@ -1,4 +1,5 @@
 ﻿using BookStoreWarehouse.Models;
+using PrinterGUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace BookStoreGUI
             Application.SetCompatibleTextRenderingDefault(false);
             StoreInfo.Instance.loadData();
             BookStoreGUI gui = BookStoreGUI.Instance;
+            Printer p = Printer.Instance;
+            p.Show();
             Application.Run(gui);
         }
     }
