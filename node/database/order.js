@@ -212,6 +212,7 @@ function createOrder(email, title, quantity, state, callback) {
     const stmt = db.prepare('INSERT INTO Encomenda (uuid, quantity, state, email, title) VALUES(?,?,?,?,?);');
     const uuid = uuidV4();
     stmt.get([uuid, quantity, state, email, title], (err, row) => {
+        console.log('order' + err);
         if (row === undefined)
             callback(uuid);
         else callback('error');
