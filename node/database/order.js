@@ -13,7 +13,11 @@ function placeOrder(email, quantity, title, callback) {
     // get the book
     stmt.get(title, (err, book) => {
         stmt = db.prepare('SELECT * FROM User WHERE email = ?');
+        console.log(email);
         stmt.get(email, (err, user) => {
+            console.log(err);
+            console.log(book);
+            console.log(quantity);
             if (book.stock > quantity) { // place the order, discount on the quantity and send an e-mail
                 discountStockOnBook(quantity, book.stock, title, () => {
                     createOrder(email, title, quantity, 'Dispatch Will Ocurr At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear(), (uuid) => {
@@ -34,10 +38,11 @@ function placeOrder(email, quantity, title, callback) {
                                         'Price': book.price,
                                         'ISBN': 0,
                                     },
-                                    'NumBooks': Number(quantity) + 10,
-                                    'OrderCode': uuid
+                                    'NumBooks': Number(quantity),
+                                    'OrderCode': uuid,
+                                    'Status': 'Dispatch Will Ocurr At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear(),
                                 };
-                                sockets.emitSocket('newOrder', json);
+                                sockets.emitSocket('newOrder', JSON.stringify(json));
                                 callback(uuid);
                             });
                     });
@@ -106,7 +111,7 @@ function updateOrderByStore(uuid, callback) {
     const date = new Date();
     const temp = 'Dispatched At ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
     // get title of book
-    const stmt = db.prepare('SELECT * FROM Encomenda WHERE uuid = ?');
+    var stmt = db.prepare('SELECT * FROM Encomenda WHERE uuid = ?');
     stmt.get(uuid, (err, order) => {
         // get stock of book
         stmt = db.prepare('SELECT * FROM Book WHERE title = ?');
@@ -115,30 +120,15 @@ function updateOrderByStore(uuid, callback) {
             stmt = db.prepare('UPDATE Book SET stock = ? WHERE title = ?');
             stmt.get([order.quantity + 10, order.title], (err, row) => {
                 // check all other orders
-                stmt = db.prepare('SELECT * FROM Encomenda WHERE title = ? AND quantity <= ?');
-                stmt.all([order.title, order.quantity + 10], (err, rows) => {
-                    async.each(rows, (row, next) => {
-                        stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
-                        stmt.get([temp, uuid], (err, r) => {
-                            // é preciso chamar socket???
-                            sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
-                                + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
-                                    next();
-                                });
-                        });
-                    }, (err) => {
-                        // update the order's state
-                        if (!order.status.includes('Dispatched')) {
-                            stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
-                            stmt.get([temp, uuid], (err, row) => {
-                                sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
-                                    + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
-                                        callback(response);
-                                    });
+                if (!order.state.includes('Dispatched')) {
+                    stmt = db.prepare('UPDATE Encomenda SET state = ? WHERE uuid = ?');
+                    stmt.get([temp, uuid], (err, row) => {
+                        sendEmail(order.email, 'Your order number: ' + uuid + ' will be dispatched today.\n\nTitle: ' + order.title + '.\nQuantity: ' + order.quantity
+                            + '.\nPreco Por Livro: ' + book.price + '.\nPreco Total: ' + (book.price * order.quantity), (response) => {
+                                callback(response);
                             });
-                        }
                     });
-                });
+                }
             });
         });
     });
@@ -155,6 +145,66 @@ function getOrder(uuid, callback) {
     const stmt = db.prepare('SELECT * FROM Encomenda, Book WHERE uuid = ?');
     stmt.get(uuid, (err, row) => {
         callback(row);
+    });
+}
+
+function getOrdersInWarehouse(callback) {
+    const stmt = db.prepare('SELECT * FROM Encomenda WHERE state = \'Waiting Expedition\'');
+    stmt.all((err, rows) => {
+        var jsonArray = [];
+        for (let i = 0; i < rows.length; i += 1) {
+            const json = {
+                'user': {
+                    'email': rows[i].email,
+                    'name': '',
+                    'address': '',
+                },
+                'book': {
+                    'Name': rows[i].title,
+                    'PageNumber': 0,
+                    'Author': '',
+                    'Stars': 0,
+                    'Price': 0,
+                    'ISBN': 0,
+                },
+                'NumBooks': Number(rows[i].quantity),
+                'OrderCode': rows[i].uuid,
+                'Status': rows[i].state,
+            };
+            jsonArray.push(json);
+        }
+        callback(jsonArray);
+    });
+}
+
+function getOrdersInStore(callback) {
+    const stmt = db.prepare('SELECT * FROM Encomenda');
+    stmt.all((err, rows) => {
+        var jsonArray = [];
+        for (let i = 0; i < rows.length; i += 1) {
+            if (rows[i].state.includes('Dispatch Will Ocurr')) {
+                const json = {
+                    'user': {
+                        'email': rows[i].email,
+                        'name': '',
+                        'address': '',
+                    },
+                    'book': {
+                        'Name': rows[i].title,
+                        'PageNumber': 0,
+                        'Author': '',
+                        'Stars': 0,
+                        'Price': 0,
+                        'ISBN': 0,
+                    },
+                    'NumBooks': Number(rows[i].quantity),
+                    'OrderCode': rows[i].uuid,
+                    'Status': rows[i].state,
+                };
+                jsonArray.push(json);
+            }
+        }
+        callback(jsonArray);
     });
 }
 
@@ -206,4 +256,6 @@ module.exports = {
     updateOrderByWarehouse,
     updateOrderByStore,
     getOrder,
+    getOrdersInStore,
+    getOrdersInWarehouse,
 };

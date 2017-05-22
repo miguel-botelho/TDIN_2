@@ -58,6 +58,7 @@ amqp.connect('amqp://localhost', function (err, conn) {
         ch.consume(q, function (msg) {
             console.log(msg.content.toString());
             order.updateOrderByWarehouse(msg.content.toString(), (response) => {
+                emitSocket('orderWarehouse', msg.content.toString());
                 console.log(" [x] Order %s will be dispatched the day after tomorrow.", msg.content.toString());
             });
         }, { noAck: true });
@@ -128,12 +129,47 @@ function onError(error) {
 function receiveSockets() {
     io.on('connection', (socket) => {
         socket.on('sell', (data) => {
-            order.placeOrder(data.user.email, data.NumBooks, data.book.Name, (respo) => {
+            console.log("sell ");
+            data = JSON.parse(data);
+            console.log(data);
+            order.placeOrder(data.user.email, data.numBooks, data.book.Name, (respo) => {
                 console.log('Order ' + respo + ' placed.');
             });
         });
 
+        socket.on('directSell', (data) => {
+            console.log('direct Sell');
+            data = JSON.parse(data);
+            book.discountStockOnBook(data.numBooks, data.book.Name, (respo) => {
+                console.log('Sold!');
+            });
+        });
+
+        socket.on('AvailableBooks', (data) => {
+            book.getAllBooks((books) => {
+                console.log('Available Books');
+                socket.emit("AvailableBooks", JSON.stringify(books));
+            });
+        });
+        
+        socket.on('ordersWarehouse', (data) => {
+            order.getOrdersInWarehouse((orders) => {
+                //console.log(orders);
+                console.log('WAREHOUSE');
+                socket.emit('ordersWarehouse', JSON.stringify(orders));
+            });
+        });
+
+        socket.on('ordersStore', (data) => {
+            order.getOrdersInStore((orders) => {
+                //console.log(orders);
+                console.log('STORE');
+                socket.emit('ordersStore', JSON.stringify(orders));
+            });
+        });
+
         socket.on('accept', (uuid) => {
+            console.log('Accept ' + uuid);
             order.updateOrderByStore(uuid, (respo) => {
                 console.log('Accepted order ' + uuid);
             });
@@ -142,9 +178,7 @@ function receiveSockets() {
 }
 
 function emitSocket(name, message) {
-    io.on('connection', function (socket) {
-        socket.emit(name, message);
-    });
+    io.emit(name, message);
 }
 
 function onListening() {
@@ -157,6 +191,4 @@ function onListening() {
 
 receiveSockets();
 
-module.exports = {
-    emitSocket: emitSocket,
-};
+module.exports.emitSocket = emitSocket;
