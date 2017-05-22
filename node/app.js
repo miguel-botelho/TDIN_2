@@ -137,25 +137,33 @@ function receiveSockets() {
             });
         });
 
+        socket.on('directSell', (data) => {
+            console.log('direct Sell');
+            data = JSON.parse(data);
+            book.discountStockOnBook(data.numBooks, data.book.Name, (respo) => {
+                console.log('Sold!');
+            });
+        });
+
         socket.on('AvailableBooks', (data) => {
             book.getAllBooks((books) => {
                 console.log('Available Books');
                 socket.emit("AvailableBooks", JSON.stringify(books));
             });
-            /*order.placeOrder(data.user.email, data.NumBooks, data.book.Name, (respo) => {
-                console.log('Order ' + respo + ' placed.');
-            });*/
         });
         
         socket.on('ordersWarehouse', (data) => {
             order.getOrdersInWarehouse((orders) => {
-                console.log(orders);
+                //console.log(orders);
+                console.log('WAREHOUSE');
                 socket.emit('ordersWarehouse', JSON.stringify(orders));
             });
         });
 
         socket.on('ordersStore', (data) => {
             order.getOrdersInStore((orders) => {
+                //console.log(orders);
+                console.log('STORE');
                 socket.emit('ordersStore', JSON.stringify(orders));
             });
         });

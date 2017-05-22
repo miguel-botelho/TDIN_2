@@ -182,7 +182,7 @@ function getOrdersInStore(callback) {
     stmt.all((err, rows) => {
         var jsonArray = [];
         for (let i = 0; i < rows.length; i += 1) {
-            if (rows[i].status.includes('Dispatch Will Ocurr')) {
+            if (rows[i].state.includes('Dispatch Will Ocurr')) {
                 const json = {
                     'user': {
                         'email': rows[i].email,
