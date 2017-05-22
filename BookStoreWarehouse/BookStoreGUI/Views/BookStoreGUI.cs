@@ -35,6 +35,7 @@ namespace BookStoreGUI
         public BookStoreGUI()
         {
             InitializeComponent();
+            StoreInfo.Instance.loadData();
         }
 
         internal void refreshAvailableBooks()
@@ -59,26 +60,13 @@ namespace BookStoreGUI
 
             switch (op)
             {
-                case Operation.NewPendingOrder:
-                    //lvAdd = new LVAddDelegate(listView1.Items.Add);
-                    //pendingOrders.Add(((Order)obj).OrderCode, (Order)obj);
-                    //ListViewItem lvUsr = new ListViewItem(new string[] { ((Order)obj).OrderCode, ((Order)obj).book.Name, ((Order)obj).book.Price.ToString(), ((Order)obj).numBooks.ToString(), ((Order)obj).user.name });
-                    //lvUsr.Tag = ((Order)obj);
-                    //if (button5.Enabled != false)
-                     //   BeginInvoke(lvAdd, new object[] { lvUsr });
-                    break;
-                case Operation.NewPastOrder:
-                    //if (!pastOrders.ContainsKey(((Order)obj).OrderCode))
-                    //{
-                    //    pastOrders.Add(((Order)obj).OrderCode, (Order)obj);
-                    //}
-                    break;
                 case Operation.RefreshAvailableBooks:
                     chComm = new ChCommDelegate(RefreshAvailableBooks);
                     BeginInvoke(chComm, new object[] { obj });
                     break;
             }
         }
+
 
         private void RefreshAvailableBooks(object obj)
         {
@@ -95,20 +83,26 @@ namespace BookStoreGUI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            PendingPast p = new PendingPast();
-            p.ShowDialog();
+           /* PendingPast p = new PendingPast("WHAT");
+            p.ShowDialog();*/
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            PendingPast p = new PendingPast();
-            p.ShowDialog();
+            /*PendingPast p = new PendingPast("asdasd");
+            p.ShowDialog();*/
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateOrderSell s = new CreateOrderSell();
-            s.ShowDialog();
+            var index = listView1.SelectedIndices;
+            if (index.Count > 0)
+            {
+                ListViewItem item = listView1.Items[index[0]];
+                StoreBook b = StoreInfo.Instance.getBookByName(item.Text);
+                CreateOrderSell createOrder = new CreateOrderSell(b, "Sell");
+                createOrder.ShowDialog();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -116,8 +110,8 @@ namespace BookStoreGUI
             SocketClientServer s = new SocketClientServer();
             User user = new User("miguel_botelho@gmail.com","Miguel Botelho","Rua dos caralhos");
             Book book = new Book();
-            Order o = new Order(user,book,20);
-            s.createOrder(o);
+            /*Order o = new Order(user,book,20);
+            s.createOrder(o);*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -133,6 +127,18 @@ namespace BookStoreGUI
             
         }
 
+        internal void RefreshAvailableBooks(List<StoreBook> bks)
+        {
+            listView1.Items.Clear();
+            foreach (StoreBook b in bks)
+            {
+                ListViewItem item = new ListViewItem(new string[] { b.title, b.stock.ToString(), b.price.ToString() + "€" });
+                listView1.Items.Add(item);
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
         private void BookStoreGUI_Load(object sender, EventArgs e)
         {
             evRepeater = new AlterEventRepeater();
@@ -146,7 +152,21 @@ namespace BookStoreGUI
 
         private void button7_Click(object sender, EventArgs e)
         {
-            StoreInfo.Instance.refreshAvailableBooks();
+            StoreInfo.Instance.loadData();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            PendingPast p = new PendingPast("Orders in Store",StoreInfo.Instance.ordersStore,true);
+            p.ShowDialog();
+            p.Close();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            PendingPast p = new PendingPast("Orders in Warehouse", StoreInfo.Instance.ordersWarehouse, false);
+            p.ShowDialog();
+            p.Close();
         }
     }
 }

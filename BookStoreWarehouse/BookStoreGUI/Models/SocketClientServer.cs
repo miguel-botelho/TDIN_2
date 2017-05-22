@@ -10,34 +10,43 @@ namespace BookStoreGUI.Models
     class SocketClientServer
     {
         Socket socket = IO.Socket("http://172.30.28.65:3000");
-        Socket socket2 = IO.Socket("http://localhost:3001");
 
 
         public void initServices()
         {
             socket.On("AvailableBooks", (data) =>
             {
-                Console.WriteLine("MERDA");
                 string json = (string)data;
                 List<StoreBook> books = JsonConvert.DeserializeObject<List<StoreBook>>(json);
                 StoreInfo.Instance.refreshAvailableBooks(books);
             });
-            socket2.On("newOrder", (data) =>
-            {
-                Console.WriteLine("CARALHO1");
-                string json = (string)data;
-                Order order = JsonConvert.DeserializeObject<Order>(json);
-                StoreInfo.Instance.updateStockBook(order);
-            });
+
             socket.On("newOrder", (data) =>
             {
-                Console.WriteLine("CARALHO2");
                 string json = (string)data;
                 Order order = JsonConvert.DeserializeObject<Order>(json);
                 StoreInfo.Instance.updateStockBook(order);
             });
+
+            socket.On("ordersWarehouse", (data) =>
+            {
+                string json = (string)data;
+                List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(json);
+                StoreInfo.Instance.updateOrdersWarehouse(orders);
+            });
+            socket.On("ordersStore", (data) =>
+            {
+                string json = (string)data;
+                List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(json);
+                StoreInfo.Instance.updateOrdersStore(orders);
+            });
         }
-       
+
+        internal void refreshOrderWarehouse()
+        {
+            socket.Emit("ordersWarehouse", "");
+        }
+
         public void start()
         {
             
@@ -58,13 +67,29 @@ namespace BookStoreGUI.Models
 
         public void refreshAvailableBooks()
         {
-            socket.Emit("AvailableBooks","asdas");
+            socket.Emit("AvailableBooks","");
+        }
+
+        public void refreshOrdersStore()
+        {
+            socket.Emit("ordersStore", "");
+        }
+
+        internal void dispatchOrderStore(string text)
+        {
+            socket.Emit("accept",text);
         }
 
         public void createOrder(Order order)
         {
             string json = JsonConvert.SerializeObject(order);
             socket.Emit("sell",json);
+        }
+
+        internal void createSell(Order order)
+        {
+            string json = JsonConvert.SerializeObject(order);
+            socket.Emit("directSell", json);
         }
     }
 }

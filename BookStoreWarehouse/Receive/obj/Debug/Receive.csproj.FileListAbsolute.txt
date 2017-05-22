@@ -17,3 +17,5 @@ C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\Newtonsoft.Js
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\BookStoreWarehouseCommon.pdb
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\Newtonsoft.Json.xml
 C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\obj\Debug\Receive.csprojResolveAssemblyReference.cache
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\DataStorage.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\Receive\bin\Debug\DataStorage.pdb

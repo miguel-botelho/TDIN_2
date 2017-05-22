@@ -1,0 +1,18 @@
+Order JSON example:
+{ 
+  "user":{ 
+  "uuid": "00000000-0000-0000-0000-000000000000",
+  "name": "Daniel Reis",
+  "address": "up201308586@fe.up.pt"
+},
+  "book": {
+  "Name": "asdasdsad",
+  "PageNumber": 0,
+  "Author": "asdasdasdsa",
+  "Stars": 0,
+  "Price": 0.0,
+  "ISBN": 0
+},
+"NumBooks":4,
+  "OrderCode": "00000000-0000-0000-0000-000000000000"
+}

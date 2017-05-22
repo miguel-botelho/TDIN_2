@@ -7,116 +7,14 @@
       <address>Rua Doutor Roberto Frias</address>
     </user>
     <book>
-      <Name>O Principezinho</Name>
+      <Name>Harry Potter e os Talismãs da Morte</Name>
       <PageNumber>0</PageNumber>
       <Author />
       <Stars>0</Stars>
-      <Price>10</Price>
+      <Price>20</Price>
       <ISBN>0</ISBN>
     </book>
-    <numBooks>210</numBooks>
-    <OrderCode>def14846-bf1c-48fd-827c-84024c57412a</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>O Principezinho</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>10</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>210</numBooks>
-    <OrderCode>162c4819-de86-4cc1-b37b-e67d304b3c8a</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>O Principezinho</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>10</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>210</numBooks>
-    <OrderCode>8f5347c5-4a84-40bb-ab43-efb353b59cd3</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>Harry Potter e a Pedra Filosofal</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>15</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>410</numBooks>
-    <OrderCode>d09429ed-e704-46c2-97f5-450ad1fd66e9</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>O Principezinho</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>10</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>210</numBooks>
-    <OrderCode>73b3c9cf-3f48-4e90-be97-69f5c0f533e3</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>O Principezinho</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>10</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>210</numBooks>
-    <OrderCode>b55c96e4-a732-4aff-846a-cb0af2385d52</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>Harry Potter e a Pedra Filosofal</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>15</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>2010</numBooks>
-    <OrderCode>4fa0849b-1575-40e9-be66-10165c03831a</OrderCode>
+    <numBooks>25</numBooks>
+    <OrderCode>9b9ccb86-92fa-4556-8570-e6da10315c0d</OrderCode>
   </Order>
 </ArrayOfOrder>

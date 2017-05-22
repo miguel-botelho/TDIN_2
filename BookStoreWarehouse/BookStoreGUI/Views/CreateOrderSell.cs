@@ -15,10 +15,12 @@ namespace BookStoreGUI
     {
 
         private StoreBook book;
+        private string Request;
         public CreateOrderSell(StoreBook book,String Request)
         {
             InitializeComponent();
             this.book = book;
+            this.Request = Request;
             this.Text = Request;
             this.textBox4.Text = book.title;
             this.textBox4.Font = new Font("Arial",12 , FontStyle.Bold);
@@ -28,7 +30,6 @@ namespace BookStoreGUI
         public CreateOrderSell()
         {
             InitializeComponent();
-            this.Text="ok";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,8 +41,8 @@ namespace BookStoreGUI
                 {
                     User u = new User(this.user_email.Text, this.user_name.Text, this.user_address.Text);
                     Book b = new Book(book.title,0,"",0,book.price,0);
-                    Order o = new Order(u,b, Convert.ToInt32(this.book_amount.Value));
-                    StoreInfo.Instance.dispatchOrder(o);
+                    Order o = new Order(u,b, Convert.ToInt32(this.book_amount.Value),"");
+                    StoreInfo.Instance.dispatchOrder(o, Request);
                     this.Close();
                 }
                 else if (dialogResult == DialogResult.No)

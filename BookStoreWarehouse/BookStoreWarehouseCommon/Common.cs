@@ -258,16 +258,18 @@ public class Order
     public Book book { get; set; }
     public int numBooks { get; set; }
     public String OrderCode { get; set; }
+    public string status { get; set; }
 
     public Order()
     {
 
     }
-    public Order(User user,Book book,int numBooks)
+    public Order(User user,Book book,int numBooks,string status)
     {
         this.user = user;
         this.book = book;
         this.numBooks = numBooks;
+        this.status = status;
     }
 }
 
