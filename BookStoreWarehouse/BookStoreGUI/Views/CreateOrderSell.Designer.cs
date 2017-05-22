@@ -34,20 +34,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.book_amount = new System.Windows.Forms.NumericUpDown();
+            this.user_name = new System.Windows.Forms.TextBox();
+            this.user_address = new System.Windows.Forms.TextBox();
+            this.user_email = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.book_amount)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(12, 236);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 46);
+            this.button1.Size = new System.Drawing.Size(298, 46);
             this.button1.TabIndex = 0;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
@@ -55,9 +55,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(141, 236);
+            this.button2.Location = new System.Drawing.Point(316, 236);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(129, 46);
+            this.button2.Size = new System.Drawing.Size(257, 46);
             this.button2.TabIndex = 1;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
@@ -100,38 +100,38 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Amount";
             // 
-            // numericUpDown1
+            // book_amount
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(83, 194);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(187, 22);
-            this.numericUpDown1.TabIndex = 6;
+            this.book_amount.Location = new System.Drawing.Point(83, 194);
+            this.book_amount.Name = "book_amount";
+            this.book_amount.Size = new System.Drawing.Size(490, 22);
+            this.book_amount.TabIndex = 6;
             // 
-            // textBox1
+            // user_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(83, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 22);
-            this.textBox1.TabIndex = 7;
+            this.user_name.Location = new System.Drawing.Point(83, 96);
+            this.user_name.Name = "user_name";
+            this.user_name.Size = new System.Drawing.Size(490, 22);
+            this.user_name.TabIndex = 7;
             // 
-            // textBox2
+            // user_address
             // 
-            this.textBox2.Location = new System.Drawing.Point(83, 128);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(187, 22);
-            this.textBox2.TabIndex = 8;
+            this.user_address.Location = new System.Drawing.Point(83, 128);
+            this.user_address.Name = "user_address";
+            this.user_address.Size = new System.Drawing.Size(490, 22);
+            this.user_address.TabIndex = 8;
             // 
-            // textBox3
+            // user_email
             // 
-            this.textBox3.Location = new System.Drawing.Point(83, 163);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(187, 22);
-            this.textBox3.TabIndex = 9;
+            this.user_email.Location = new System.Drawing.Point(83, 163);
+            this.user_email.Name = "user_email";
+            this.user_email.Size = new System.Drawing.Size(490, 22);
+            this.user_email.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(102, 9);
+            this.label5.Location = new System.Drawing.Point(257, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 17);
             this.label5.TabIndex = 10;
@@ -143,7 +143,7 @@
             this.textBox4.ForeColor = System.Drawing.Color.Green;
             this.textBox4.Location = new System.Drawing.Point(12, 39);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(258, 22);
+            this.textBox4.Size = new System.Drawing.Size(561, 22);
             this.textBox4.TabIndex = 13;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -151,13 +151,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 294);
+            this.ClientSize = new System.Drawing.Size(585, 294);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.user_email);
+            this.Controls.Add(this.user_address);
+            this.Controls.Add(this.user_name);
+            this.Controls.Add(this.book_amount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -166,7 +166,7 @@
             this.Controls.Add(this.button1);
             this.Name = "CreateOrderSell";
             this.Text = "Order Sell";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.book_amount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,10 +180,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.NumericUpDown book_amount;
+        private System.Windows.Forms.TextBox user_name;
+        private System.Windows.Forms.TextBox user_address;
+        private System.Windows.Forms.TextBox user_email;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
     }

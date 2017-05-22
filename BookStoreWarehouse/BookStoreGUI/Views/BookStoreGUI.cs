@@ -122,9 +122,15 @@ namespace BookStoreGUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Book book = new Book();
-            CreateOrderSell createOrder = new CreateOrderSell(book,"Create New Order");
-            createOrder.ShowDialog();
+            var index = listView1.SelectedIndices;
+            if (index.Count > 0)
+            {
+                ListViewItem item = listView1.Items[index[0]];
+                StoreBook b = StoreInfo.Instance.getBookByName(item.Text);
+                CreateOrderSell createOrder = new CreateOrderSell(b, "Create New Order");
+                createOrder.ShowDialog();
+            }
+            
         }
 
         private void BookStoreGUI_Load(object sender, EventArgs e)
@@ -136,6 +142,11 @@ namespace BookStoreGUI
         private void button6_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Total books: "+StoreInfo.Instance.availableBooks.Count);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            StoreInfo.Instance.refreshAvailableBooks();
         }
     }
 }

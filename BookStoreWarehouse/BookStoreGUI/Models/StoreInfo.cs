@@ -37,6 +37,18 @@ namespace BookStoreWarehouse.Models
             service.refreshAvailableBooks();
         }
 
+        internal void updateStockBook(Order order)
+        {
+            foreach(StoreBook b in availableBooks)
+            {
+                if(b.title == order.book.Name)
+                {
+                    b.stock -= order.numBooks;
+                }
+            }
+            BookStoreGUI.BookStoreGUI.Instance.DoAlterations(Operation.RefreshAvailableBooks,availableBooks);
+        }
+
         internal void refreshAvailableBooks(List<StoreBook> books)
         {
             this.availableBooks = books;
@@ -48,10 +60,19 @@ namespace BookStoreWarehouse.Models
             throw new NotImplementedException();
         }
 
+        public StoreBook getBookByName(string name)
+        {
+            foreach(StoreBook b in availableBooks)
+            {
+                if (b.title == name)
+                    return b;
+            }
+            return null;
+        }
                
         public void dispatchOrder(Order order)
         {
-            throw new NotImplementedException();
+            service.createOrder(order);
         }
 
         internal List<Order> getPastOrders()

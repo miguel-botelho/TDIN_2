@@ -50,3 +50,6 @@ D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição
 D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.csproj.GenerateResource.Cache
 D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.exe
 D:\Google Drive\Faculdade\Faculdade\Ano 4\2 Semestre\Tecnogias de Distribuição e Integração\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\obj\Debug\BookStoreWarehouse.pdb
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\EngineIoClientDotNet.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\SocketIoClientDotNet.dll
+C:\Users\danie\Desktop\TDIN_2\BookStoreWarehouse\BookStoreWarehouse\bin\Debug\WebSocket4Net.dll

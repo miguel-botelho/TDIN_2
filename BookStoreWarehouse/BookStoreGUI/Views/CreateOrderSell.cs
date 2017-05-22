@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStoreWarehouse.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +14,13 @@ namespace BookStoreGUI
     public partial class CreateOrderSell : Form
     {
 
-
-        public CreateOrderSell(Book book,String Request)
+        private StoreBook book;
+        public CreateOrderSell(StoreBook book,String Request)
         {
             InitializeComponent();
+            this.book = book;
             this.Text = Request;
-            this.textBox4.Text = book.Name;
+            this.textBox4.Text = book.title;
             this.textBox4.Font = new Font("Arial",12 , FontStyle.Bold);
             this.textBox4.Enabled = false;
         }
@@ -31,8 +33,26 @@ namespace BookStoreGUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Buy books?");
-            Guid orderGUID = System.Guid.NewGuid();
+            if(this.book_amount.Value >= 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to buy " + book.title + "?", "Dispath Order", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    User u = new User(this.user_email.Text, this.user_name.Text, this.user_address.Text);
+                    Book b = new Book(book.title,0,"",0,book.price,0);
+                    Order o = new Order(u,b, Convert.ToInt32(this.book_amount.Value));
+                    StoreInfo.Instance.dispatchOrder(o);
+                    this.Close();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                }
+            }else
+            {
+                MessageBox.Show("Please, input a valid book number");
+            }
+                    
             
         }
 
