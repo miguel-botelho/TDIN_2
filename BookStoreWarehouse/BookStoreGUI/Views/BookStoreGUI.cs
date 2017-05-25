@@ -108,7 +108,7 @@ namespace BookStoreGUI
         private void button3_Click(object sender, EventArgs e)
         {
             SocketClientServer s = new SocketClientServer();
-            User user = new User("miguel_botelho@gmail.com","Miguel Botelho","Rua dos caralhos");
+            User user = new User("miguel_botelho@gmail.com","Miguel Botelho","Rua rua rua");
             Book book = new Book();
             /*Order o = new Order(user,book,20);
             s.createOrder(o);*/

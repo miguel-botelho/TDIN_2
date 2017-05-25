@@ -42,7 +42,7 @@ public class SingleServer : MarshalByRefObject, ISingleServer
     volatile List<Order> pendingOrders = new List<Order>();
     Storage storage = new Storage();
     //SEND
-    ConnectionFactory factorySend = new ConnectionFactory() { HostName = "172.30.28.65", Password = "tdin", UserName = "tdin" };
+    ConnectionFactory factorySend = new ConnectionFactory() { HostName = "localhost", Password = "tdin", UserName = "tdin" };
     IConnection connectionSend;
     IModel channelSend;
 

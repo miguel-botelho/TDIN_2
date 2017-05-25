@@ -9,7 +9,7 @@ namespace BookStoreGUI.Models
 {
     class SocketClientServer
     {
-        Socket socket = IO.Socket("http://172.30.28.65:3000");
+        Socket socket = IO.Socket("http://localhost:3000");
 
 
         public void initServices()
@@ -53,7 +53,7 @@ namespace BookStoreGUI.Models
 
             socket.On(Socket.EVENT_CONNECT, () =>
             {
-                socket.Emit("caralho");
+                socket.Emit("test");
             });
 
             socket.On("newOrder", (data) =>

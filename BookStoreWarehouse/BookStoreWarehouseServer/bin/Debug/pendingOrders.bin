@@ -7,57 +7,6 @@
       <address>Rua Doutor Roberto Frias</address>
     </user>
     <book>
-      <Name>Harry Potter e a Ordem da Fénix</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>19</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>510</numBooks>
-    <OrderCode>2fb7bc82-e984-426d-bfc4-ac890e8cc371</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>O Principezinho</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>10</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>1010</numBooks>
-    <OrderCode>101d676f-bf82-4943-97aa-333f08ebec78</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
-      <Name>O Principezinho</Name>
-      <PageNumber>0</PageNumber>
-      <Author />
-      <Stars>0</Stars>
-      <Price>10</Price>
-      <ISBN>0</ISBN>
-    </book>
-    <numBooks>210</numBooks>
-    <OrderCode>ca1afb24-46cf-4c5a-bdd4-9a64b0f0e45d</OrderCode>
-  </Order>
-  <Order>
-    <user>
-      <email>m_botelho8@hotmail.com</email>
-      <name>Miguel Botelho</name>
-      <address>Rua Doutor Roberto Frias</address>
-    </user>
-    <book>
       <Name>Harry Potter e a Pedra Filosofal</Name>
       <PageNumber>0</PageNumber>
       <Author />

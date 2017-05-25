@@ -21,7 +21,6 @@ public class Storage
     /// <param name="fileName"></param>
     public void SaveObject<T>(T serializableObject, string fileName)
     {
-        Console.WriteLine("DEU MERDA");
         if (serializableObject == null) { return; }
 
         try
@@ -39,7 +38,6 @@ public class Storage
         }
         catch (Exception ex)
         {
-            Console.WriteLine("DEU MERDA1");
             Console.WriteLine(ex);
             //Log exception here
         }
@@ -80,7 +78,6 @@ public class Storage
         }
         catch (Exception ex)
         {
-            Console.WriteLine("DEU MERDA221");
             Console.WriteLine(ex);
         }
 
