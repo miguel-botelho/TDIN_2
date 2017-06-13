@@ -225,7 +225,7 @@ function sendEmail(receiver, message, next) {
         service: 'Gmail',
         auth: {
             user: 'jrcm.emails@gmail.com', // Your email id
-            pass: 'grandejefe1' // Your password
+            pass: '********' // Your password
         },
         secure: false,
         tls: { rejectUnauthorized: false }
